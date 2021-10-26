@@ -9,8 +9,12 @@ export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Categories" component={Categories} />
-        <Stack.Screen name="Foods" component={Foods} />
+        <Stack.Screen
+          name="Categories"
+          component={Categories}
+          options={{headerTitleStyle: {color: 'orange'}}}
+        />
+        <Stack.Screen name="Meals" component={Foods} />
         <Stack.Screen name="FoodDetails" component={FoodDetails} />
       </Stack.Navigator>
     </NavigationContainer>
