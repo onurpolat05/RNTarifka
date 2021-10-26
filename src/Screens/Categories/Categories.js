@@ -9,6 +9,8 @@ export default function Categories({navigation}) {
   const handleCategoriSelect = categori => {
     navigation.navigate('Meals', {categori});
   };
+  const {categories} = data;
+  console.log(categories);
   const renderCategories = ({item}) => (
     <CategoriesCard
       categori={item}
@@ -24,7 +26,7 @@ export default function Categories({navigation}) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={categories}
         renderItem={renderCategories}
         keyExtractor={(item, index) => {
           return index.toString();
