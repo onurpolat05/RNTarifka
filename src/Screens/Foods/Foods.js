@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import Config from 'react-native-config';
-import useFetch from '../../Hooks/useFetch/useFetch';
+import * as Request from '../../Hooks/useFetch/useFetch';
 import FoodsCard from '../../Components/FoodsCard/FoodsCard';
 export default function Foods({route, navigation}) {
   const {categori} = route.params;
-  const {loading, data, error} = useFetch(`${Config.API_URL_FOODS}${categori}`);
+  const {loading, data, error} = Request.useFetch(
+    `${Config.API_URL_FOODS}${categori}`,
+  );
   const {meals} = data;
   const handleMealSelect = mealId => {
     navigation.navigate('FoodDetails', {mealId});

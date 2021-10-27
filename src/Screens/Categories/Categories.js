@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import useFetch from '../../Hooks/useFetch/useFetch';
+import * as Request from '../../Hooks/useFetch/useFetch';
 import Config from 'react-native-config';
 import CategoriesCard from '../../Components/CategoriesCard/CategoriesCard';
 
 export default function Categories({navigation}) {
-  const {loading, data, error} = useFetch(Config.API_URL_CATEGORIES);
+  const {loading, data, error} = Request.useFetch(Config.API_URL_CATEGORIES);
   const handleCategoriSelect = categori => {
     navigation.navigate('Meals', {categori});
   };
