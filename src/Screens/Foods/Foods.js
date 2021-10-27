@@ -10,7 +10,7 @@ export default function Foods({route, navigation}) {
   );
   const {meals} = data;
   const handleMealSelect = mealId => {
-    navigation.navigate('FoodDetails', {mealId});
+    navigation.navigate('Detail', {mealId});
   };
   const renderFoods = ({item}) => (
     <FoodsCard foods={item} onSelect={() => handleMealSelect(item.idMeal)} />

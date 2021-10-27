@@ -12,10 +12,27 @@ export default function Router() {
         <Stack.Screen
           name="Categories"
           component={Categories}
-          options={{headerTitleStyle: {color: 'orange'}}}
+          options={{
+            headerTitleStyle: {color: 'orange'},
+            headerTintColor: 'orange',
+          }}
         />
-        <Stack.Screen name="Meals" component={Foods} />
-        <Stack.Screen name="FoodDetails" component={FoodDetails} />
+        <Stack.Screen
+          name="Meals"
+          component={Foods}
+          options={{
+            headerTitleStyle: {color: 'orange'},
+            headerTintColor: 'orange',
+          }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={FoodDetails}
+          options={{
+            headerTitleStyle: {color: 'orange'},
+            headerTintColor: 'orange',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
