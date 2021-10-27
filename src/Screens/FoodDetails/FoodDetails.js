@@ -12,19 +12,19 @@ import {
 import Config from 'react-native-config';
 import * as Request from '../../Hooks/useFetch/useFetch';
 import {w, h, W} from '../../utiles/dimensions';
-
+import Loading from '../../Components/Loading/Loading';
+import Error from '../../Components/Error/Error';
 export default function FoodDetails({route}) {
   const {loading, data, error} = Request.useFetch(
     `${Config.API_URL_FOODS_DETAILS}${route.params.mealId}`,
   );
   const {meals} = data;
   if (loading) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
   if (error) {
-    return <Text>Error</Text>;
+    return <Error />;
   }
-  console.log(meals);
   return (
     <SafeAreaView>
       <ScrollView>

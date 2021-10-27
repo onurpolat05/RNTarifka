@@ -3,14 +3,14 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import * as Request from '../../Hooks/useFetch/useFetch';
 import Config from 'react-native-config';
 import CategoriesCard from '../../Components/CategoriesCard/CategoriesCard';
-
+import Loading from '../../Components/Loading/Loading';
+import Error from '../../Components/Error/Error';
 export default function Categories({navigation}) {
   const {loading, data, error} = Request.useFetch(Config.API_URL_CATEGORIES);
   const handleCategoriSelect = categori => {
     navigation.navigate('Meals', {categori});
   };
   const {categories} = data;
-  console.log(categories);
   const renderCategories = ({item}) => (
     <CategoriesCard
       categori={item}
@@ -18,13 +18,13 @@ export default function Categories({navigation}) {
     />
   );
   if (loading) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
   if (error) {
-    return <Text>Error</Text>;
+    return <Error />;
   }
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={categories}
         renderItem={renderCategories}
@@ -35,6 +35,3 @@ export default function Categories({navigation}) {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {},
-});
