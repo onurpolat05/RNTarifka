@@ -1,12 +1,25 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Image} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Image, Alert} from 'react-native';
 import Button from '../../Components/Button/Button';
 import Input from '../../Components/Input/Input';
 import {w, h} from '../../utiles/dimensions';
 import {Formik} from 'formik';
-export default function Login() {
+import {usePost} from '../../Hooks/usePost/usePost';
+import Config from 'react-native-config';
+export default function Login({navigation}) {
+  const {data, post, error, loading} = usePost();
   function handleLogin(values) {
-    console.log(values);
+    post(Config.API_AUTH_URL + '/login', values);
+  }
+  if (error) {
+    Alert.alert('Dükkan', 'Hata oluştu!');
+  }
+  if (data) {
+    if (data.status === 'Error') {
+      Alert.alert('Dükkan', 'Kullanıcı bulunamadı!');
+    } else {
+      navigation.navigate('Categories');
+    }
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -34,7 +47,7 @@ export default function Login() {
               iconName="key"
               isSecure
             />
-            <Button text="Log In" onPress={handleSubmit} />
+            <Button text="Log In" onPress={handleSubmit} loading={loading} />
           </View>
         )}
       </Formik>
