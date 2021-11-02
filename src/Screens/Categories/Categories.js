@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, Button, FlatList, StyleSheet} from 'react-native';
 import * as Request from '../../Hooks/useFetch/useFetch';
 import Config from 'react-native-config';
 import CategoriesCard from '../../Components/CategoriesCard/CategoriesCard';
 import Loading from '../../Components/Loading/Loading';
 import Error from '../../Components/Error/Error';
+import {useDispatch} from 'react-redux';
 export default function Categories({navigation}) {
   const {loading, data, error} = Request.useFetch(Config.API_URL_CATEGORIES);
+  const dispatch = useDispatch();
+
   const handleCategoriSelect = categori => {
     navigation.navigate('Meals', {categori});
   };
@@ -25,6 +28,10 @@ export default function Categories({navigation}) {
   }
   return (
     <View>
+      <Button
+        title="LogOut"
+        onPress={() => dispatch({type: 'SET_USER', payload: {user: null}})}
+      />
       <FlatList
         data={categories}
         renderItem={renderCategories}
