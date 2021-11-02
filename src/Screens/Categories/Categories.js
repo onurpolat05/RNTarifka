@@ -28,10 +28,6 @@ export default function Categories({navigation}) {
   }
   return (
     <View>
-      <Button
-        title="LogOut"
-        onPress={() => dispatch({type: 'SET_USER', payload: {user: null}})}
-      />
       <FlatList
         data={categories}
         renderItem={renderCategories}
